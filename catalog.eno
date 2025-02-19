@@ -1,0 +1,14 @@
+title: Villa Discordia
+
+base_url: https://villadiscordia.de/
+
+release_downloads:
+- mp3
+- opus
+
+theme:
+round_corners = enabled
+background_alpha = 23
+background_image = villa.jpg
+base = dark
+base_hue = 0
