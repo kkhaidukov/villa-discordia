@@ -6,6 +6,8 @@ release_downloads:
 - mp3
 - opus
 
+label_mode
+
 theme:
 round_corners = enabled
 background_alpha = 23
