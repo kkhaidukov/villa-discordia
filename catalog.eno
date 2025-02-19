@@ -9,7 +9,6 @@ release_downloads:
 label_mode
 
 theme:
-round_corners = enabled
 background_alpha = 23
 background_image = villa.jpg
 base = dark
