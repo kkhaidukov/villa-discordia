@@ -3,6 +3,7 @@ name: Build and Deploy Faircamp
 on:
     push:
         branches: ["main"]
+    workflow_dispatch:
 
 permissions:
     contents: read
@@ -18,22 +19,35 @@ concurrency:
 jobs:
     build:
         runs-on: ubuntu-latest
+
         steps:
             - name: Update apt
               run: sudo apt-get update
+
             - name: Install Dependencies
               run: sudo apt install --fix-missing ffmpeg libvips42
+
             - name: Install Faircamp
               run: |
                   wget -O ${{ runner.temp }}/faircamp.deb https://simonrepp.com/faircamp/packages/faircamp_1.2.0-1+deb12_amd64.deb
                   sudo dpkg -i ${{ runner.temp }}/faircamp.deb
+
             - name: Checkout
               uses: actions/checkout@v4
+
             - name: Setup Pages
               id: pages
               uses: actions/configure-pages@v4
+
+            - name: Cache
+              uses: actions/cache@v4
+              with:
+                  path: ./.faircamp_build
+                  key: ${{ runner.os }}-faircamp-${{ hashFiles('.faircamp_build') }}
+
             - name: Build
               run: faircamp
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
