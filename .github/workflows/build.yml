@@ -26,7 +26,7 @@ jobs:
             - name: Install Faircamp
               run: |
                   wget -O ${{ runner.temp }}/faircamp.deb https://simonrepp.com/faircamp/packages/faircamp_1.2.0-1+deb12_amd64.deb
-                  && sudo dpkg -i ${{ runner.temp }}/faircamp.deb
+                  sudo dpkg -i ${{ runner.temp }}/faircamp.deb
             - name: Checkout
               uses: actions/checkout@v4
             - name: Setup Pages
